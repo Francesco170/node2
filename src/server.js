@@ -3,6 +3,7 @@ import "express-async-errors";
 import morgan from "morgan";
 import {getAll,getOneById,create,updateById,deleteById,createImage} from "./controllers/planets.js";
 import multer from "multer";
+import {logIn,singUp} from "./controllers/users.js";
 
 
 const storage=multer.diskStorage({
@@ -29,6 +30,8 @@ app.put("/api/planets/:id", updateById)
 app.delete("/api/planets/:id", deleteById)
 
 app.post("/api/planets/:id/image",upload.single("image"), createImage)
+app.post("/api/users/login",logIn);
+app.post("/api/user/singup",singUp);
 
 
 app.listen(port, () => {
